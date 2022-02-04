@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaisesServiceService {
 
-  constructor() { }
+  private _regiones: Array<string> = [
+    'Africa',
+    'Americas',
+    'Asia',
+    'Europe',
+    'Oceania',
+  ];
+
+  get regiones(): Array<string> {
+    return [...this._regiones];
+  }
+
+  constructor() {}
 }
