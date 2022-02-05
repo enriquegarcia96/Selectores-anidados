@@ -3,7 +3,6 @@
 <hr />
 
 <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
-
   <!-- Region -->
   <div class="row mb-3">
     <div class="col">
@@ -11,37 +10,41 @@
       <select class="form-control" formControlName="region">
         <option value="">-- Seleccione continente --</option>
         <option *ngFor="let region of regiones" [value]="region | lowercase">
-          {{region}}
+          {{ region }}
         </option>
       </select>
     </div>
   </div>
 
-
   <!-- paises -->
-  <div class="row mb-3">
+  <div class="row mb-3" *ngIf="paises.length !== 0">
     <div class="col">
       <label class="form-label">País:</label>
       <select class="form-control" formControlName="pais">
         <option value="">-- Seleccione País --</option>
-        <option *ngFor="let pais of paises" [value]="pais.name.common| lowercase">
-          {{pais.name.common}}
+        <option *ngFor="let pais of paises" [value]="pais.cioc">
+          {{ pais.name.common }}
         </option>
       </select>
     </div>
   </div>
 
-
   <!-- Fronteras -->
-  <div class="row mb-3">
+  <div class="row mb-3" *ngIf="fronteras.length > 0">
     <div class="col">
       <label class="form-label">Fronteras:</label>
       <select class="form-control" formControlName="frontera">
-        <option value=""> -- Seleccione El país fronterizo -- </option>
-        <!-- <option *ngFor="let pais of paises" [value]="pais.name.common| lowercase">
-          {{pais.name.common}}
-        </option> -->
+        <option value="">-- Seleccione El país fronterizo --</option>
+        <option *ngFor="let frontera of fronteras" [value]="frontera.name">
+          {{ frontera.name }}
+        </option>
       </select>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="cargando">
+    <div class="col">
+      <div class="alert alert-primary">Cargando...</div>
     </div>
   </div>
 
